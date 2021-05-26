@@ -1,6 +1,6 @@
 <h1>List of users</h1>
 
-
+<%= session[:user_id] %>
 
 <hr>
 
@@ -38,7 +38,9 @@
       <%end%>
     </td>
      <td>
-      Follow
+      <% if session[:user_id].present? %>
+      <button> Follow </button>
+      <%end%>
     </td>
 
     <td>
