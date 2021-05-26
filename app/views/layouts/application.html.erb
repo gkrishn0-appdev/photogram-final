@@ -26,13 +26,17 @@
 </div>
 <% end %>
 
-    <a href = "/users">Users </a>
+    <a href = "/users">All users </a>
     <br>
-    <a href = "/photos">Photos </a>
+    <a href = "/photos">All public photos </a>
     <br>
     <a href = "/user_sign_up">Sign Up </a>
     <br>
     <a href = "/user_sign_in">Sign In </a>
+    <br>
+    <% if session[:user_id].present? %>
+    <a href = "/user_sign_out">Sign Out </a>
+    <%end%>
     <%= yield %>
   </body>
 </html>
