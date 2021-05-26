@@ -1,5 +1,33 @@
 <br>
 hi 
+ <h1><%= User.where({:username => @un}).at(0).username %></h1>
+ 
+
+<dl>
+  <dt>Private</dt>
+  <dd><%= User.where({:username => @un}).at(0).private %></dd>
+
+  <dt>Followers</dt>
+  <dd>
+    <%= User.where({:username => @un}).at(0).followers.length %>
+
+
+      <div>
+          <form action="/insert_follow_request" method="post">
+            <input type="hidden" name="query_recipient_id" value="92">
+
+            <button>
+              Follow
+            </button>
+          </form>
+    </div>
+
+  </dd>
+
+  <dt>Following</dt>
+  <dd><%= User.where({:username => @un}).at(0).following.length %></dd>
+
+</dl>
 
 <hr>
 <div>
