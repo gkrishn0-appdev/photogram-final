@@ -5,6 +5,7 @@ class UsersController < ApplicationController
     render({ :template => "users/index.html" })
   end
   def index_user
+    @count = 0
         matching_photos = Photo.all
 
     @list_of_photos = matching_photos.order({ :created_at => :desc })

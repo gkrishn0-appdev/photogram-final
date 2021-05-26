@@ -75,7 +75,9 @@ hi
       </tr>
 
       <% @list_of_photos.each do |a_photo| %>
-      <% if (User.where({:id => a_photo.owner_id}).at(0).username == @un) %>
+      <% 
+      if (User.where({:id => a_photo.owner_id}).at(0).username == @un) 
+      @count= @count+1 %>
       <tr>
         <td>
           <%= a_photo.id %>
@@ -119,7 +121,11 @@ hi
         </td>
       </tr>
       <% end %>
-      <% end %>
+      
+     <% end %>
+     
     </table>
   </div>
+  (<%= 
+      @count %>) photos
 </div>
