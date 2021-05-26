@@ -1,5 +1,11 @@
 <div>
   <div>
+  <%= session[:user_id] %>
+  <%= @the_photo.owner.id %>
+  <% if (session[:user_id]== @the_photo.owner.id)%>
+  <a href = "/user_sign_up">Delete this photo </a>
+  <%end%>
+
     <h1>
       Photo #<%= @the_photo.id %> details
     </h1>
