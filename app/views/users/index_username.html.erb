@@ -1,7 +1,9 @@
 <br>
 hi 
  <h1><%= User.where({:username => @un}).at(0).username %></h1>
- 
+
+
+
 
 <dl>
   <dt>Private</dt>
@@ -129,3 +131,14 @@ hi
   (<%= 
       @count %>) photos
 </div>
+    <br>
+    <a href = "/photos">All public photos </a>
+    <br>
+    <a href="/users/<%= @un %>">Profile</a>
+    <br>
+    <a href="/users/<%= @un %>/liked_photos">Liked photos</a>
+    <br>
+    <a href="/users/<%= @un %>/feed">Feed</a>
+    <br>
+    <a href="/users/<%= @un %>/discover">Discover</a>
+    <br>
