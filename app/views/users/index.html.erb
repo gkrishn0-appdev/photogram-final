@@ -13,6 +13,9 @@
     <th>
       Username
     </th>
+      <th>
+      Private?
+    </th>
 
     <th></th>
   </tr>
@@ -27,7 +30,15 @@
       <%= user.username %>
     </td>
      <td>
-      <%= user.username %>
+      <% if (user.private) 
+      %>
+
+      Yes<% else %>
+      No
+      <%end%>
+    </td>
+     <td>
+      Follow
     </td>
 
     <td>
