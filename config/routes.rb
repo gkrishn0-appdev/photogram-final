@@ -101,6 +101,7 @@ Rails.application.routes.draw do
   get("/user_sign_out", { :controller => "user_authentication", :action => "destroy_cookies" })
 
     get("/users", { :controller => "users", :action => "index" })
+    get("/users/:username", { :controller => "users", :action => "index_user" })
     get("/", { :controller => "users", :action => "index" })
   
   get("/users/:path_id", { :controller => "users", :action => "show" })
