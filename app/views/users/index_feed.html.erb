@@ -1,0 +1,145 @@
+<br>
+FEED
+ <h1><%= User.where({:username => @un}).at(0).username %></h1>
+
+
+
+
+<dl>
+  <dt>Private</dt>
+  <dd><%= User.where({:username => @un}).at(0).private %></dd>
+
+  <dt>Followers</dt>
+  <dd>
+    <%= User.where({:username => @un}).at(0).followers.length %>
+
+
+      <div>
+          <form action="/insert_follow_request" method="post">
+            <input type="hidden" name="query_recipient_id" value="92">
+
+            <button>
+              Follow
+            </button>
+          </form>
+    </div>
+
+  </dd>
+
+  <dt>Following</dt>
+  <dd><%= User.where({:username => @un}).at(0).following.length %></dd>
+
+</dl>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Caption
+        </th>
+
+        <th>
+          Image
+        </th>
+
+        <th>
+          Owner
+        </th>
+
+        <th>
+          Location
+        </th>
+
+        <th>
+          Likes count
+        </th>
+
+        <th>
+          Comments count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+      <% while (@index_counter < (@following.length-1))
+      @index_counter=@index_counter+1
+          photos = Photo.where({:owner_id => User.where({:username => @un}).at(0).following.at(@index_counter).id })
+          %>
+      <% photos.each do |a_photo| %>
+
+      <tr>
+        <td>
+          <%= a_photo.id %>
+        </td>
+
+        <td>
+          <%= a_photo.caption %>
+        </td>
+
+        <td>
+          <%= a_photo.image %>
+        </td>
+
+        <td>
+          <%= User.where({:id => a_photo.owner_id}).at(0).username %>
+        </td>
+
+        <td>
+          <%= a_photo.location %>
+        </td>
+
+        <td>
+          <%= a_photo.likes_count %>
+        </td>
+
+        <td>
+          <%= a_photo.comments_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_photo.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_photo.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/photos/<%= a_photo.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% %>
+      
+     <% end end %>
+     
+    </table>
+  </div>
+  (<%= 
+      @count %>) photos
+</div>
+    <br>
+    <a href = "/photos">All public photos </a>
+    <br>
+    <a href="/users/<%= @un %>">Profile</a>
+    <br>
+    <a href="/users/<%= @un %>/liked_photos">Liked photos</a>
+    <br>
+    <a href="/users/<%= @un %>/feed">Feed</a>
+    <br>
+    <a href="/users/<%= @un %>/discover">Discover</a>
+    <br>

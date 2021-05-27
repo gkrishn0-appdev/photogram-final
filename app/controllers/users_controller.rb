@@ -17,6 +17,25 @@ class UsersController < ApplicationController
     render({ :template => "users/index_username.html.erb" })
   end
 
+    def feed
+    @count = 0
+        matching_photos = Photo.all
+      @index_counter=-1
+    @list_of_photos = matching_photos.order({ :created_at => :desc })
+    
+
+  #  render({ :template => "photos/index.html.erb" })
+    @users = User.all.order({ :username => :asc })
+    un = params.fetch("username")
+    
+    @un = un
+    @my_photos = Photo.where({:owner_id => User.where({:username => @un}).at(0).id })
+    @following = User.where({:username => @un}).at(0).following
+    #Photo.where({:owner_id => User.where({:username => @un}).at(0).following.at(0).id })
+    #User.where({:username => @un}).at(0).following.at(0).id
+    render({ :template => "users/index_feed.html.erb" })
+  end
+
     def new_registration_form
       render({ :template => "users/signup_form.html.erb" })
     end

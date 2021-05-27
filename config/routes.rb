@@ -102,6 +102,7 @@ Rails.application.routes.draw do
 
     get("/users", { :controller => "users", :action => "index" })
     get("/users/:username", { :controller => "users", :action => "index_user" })
+    get("/users/:username/feed", { :controller => "users", :action => "feed" })
     get("/", { :controller => "users", :action => "index" })
   
   get("/users/:path_id", { :controller => "users", :action => "show" })
