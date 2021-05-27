@@ -77,7 +77,8 @@ FEED
       </tr>
       <% while (@index_counter < (@following.length-1))
       @index_counter=@index_counter+1
-          photos = Photo.where({:owner_id => User.where({:username => @un}).at(0).following.at(@index_counter).id })
+          photos = Photo.where({:owner_id => @following.at(@index_counter).id })
+          @count=@count+photos.length
           %>
       <% photos.each do |a_photo| %>
 
