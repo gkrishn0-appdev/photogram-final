@@ -6,7 +6,7 @@ Rails.application.routes.draw do
           
   # READ
   get("/comments", { :controller => "comments", :action => "index" })
-  
+  get("/insert_comment_record", { :controller => "comments", :action => "create" })
   get("/comments/:path_id", { :controller => "comments", :action => "show" })
   
   # UPDATE

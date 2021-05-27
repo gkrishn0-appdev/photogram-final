@@ -36,7 +36,8 @@
         Image
       </dt>
       <dd>
-        <%= @the_photo.image %>
+       
+        <img src = "<%= @the_photo.image %>">
       </dd>
 
       <dt>
@@ -98,7 +99,7 @@
   <% @the_photo.comments.each do |comment| %>
   <tr>
     <td>
-      <%= comment.author_id %>
+      <%= User.where({:id => comment.author_id}).at(0).username   %>
     </td>
 
     <td>
@@ -112,6 +113,7 @@
   
   <% end %>
 </table>
+
 
 
 <div>
@@ -176,4 +178,19 @@
   </div>
 </div>
 
+
 <hr>
+<hr>
+
+<h3>Add a new comment</h3>
+
+<form action="/insert_comment_record">
+  <input id="query_author_id" type="hidden" value="<%= session[:user_id] %>" name="query_commenter_id">
+  <input id="query_author_id2" type="hidden" value="<%= session[:user_id] %>" name="query_author_id">
+  <input id="browser_photo_id" type="hidden" value="<%= @the_photo.id %>" name="query_photo_id">
+
+  <label for="browser_comment">Comment</label>
+  <textarea id="browser_comment" name="query_body" placeholder="Enter a comment..."></textarea>
+
+  <button>Add comment</button>
+</form>
