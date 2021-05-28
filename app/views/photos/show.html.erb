@@ -11,7 +11,17 @@
 <a href="/delete_like/<%= id%>"> Unlike </a>
 <% else  %>
 
-<a href="/insert_like"> Like </a>
+
+<form action="/insert_like" method="post">
+  <label for="query_user_id">First name:</label>
+  <input type="text" id="query_user_id" name="query_user_id" value = <%= session[:user_id] %>><br><br>
+  <label for="query_photo_id">Last name:</label>
+  <input type="text" id="query_photo_id" name="query_photo_id" value = <%= @the_id %> ><br><br>
+  <label for="query_fan_id">Last name:</label>
+  <input type="text" id="query_fan_id" name="query_fan_id" value = <%= session[:user_id] %>><br><br>
+  <button type="submit">Submit</button>
+  <button type="submit" formmethod="post">Like</button>
+</form>
 
 <% end %>
 
