@@ -7,7 +7,14 @@
   <%end%>
   <% id = Like.where(["photo_id = ? and fan_id = ?", @the_id, session[:user_id]]) %>
   <%= id %>
-<a href="/delete_like/<% id %>"> Unlike </a>
+  <% if (id.length>0)  %>
+<a href="/delete_like/<%= id%>"> Unlike </a>
+<% else  %>
+
+<a href="/insert_like"> Like </a>
+
+<% end %>
+
     <h1>
       Photo #<%= @the_photo.id %> details
     </h1>
