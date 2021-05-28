@@ -2,9 +2,13 @@
 hi 
  <h1><%= User.where({:username => @un}).at(0).username %></h1>
 
+<% if session[:user_id]==User.where({:username => @un}).at(0).id %>
+<form action="/update_user" method="post" id="form1">
+<input for="user" value = <%= @un %> >User:</label>
+</form>
 
-
-
+<button type="submit" form="form1" value="Submit">Update user</button>
+<% end %>
 <dl>
   <dt>Private</dt>
   <dd><%= User.where({:username => @un}).at(0).private %></dd>
@@ -90,7 +94,7 @@ hi
         </td>
 
         <td>
-          <%= a_photo.image %>
+          <img src ="<%= a_photo.image %>"
         </td>
 
         <td>

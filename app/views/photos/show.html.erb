@@ -5,7 +5,9 @@
   <% if (session[:user_id]== @the_photo.owner.id)%>
   <a href = "/user_sign_up">Delete this photo </a>
   <%end%>
-
+  <% id = Like.where(["photo_id = ? and fan_id = ?", @the_id, session[:user_id]]) %>
+  <%= id %>
+<a href="/delete_like/<% id %>"> Unlike </a>
     <h1>
       Photo #<%= @the_photo.id %> details
     </h1>

@@ -3,6 +3,7 @@
 # Table name: photos
 #
 #  id             :integer          not null, primary key
+#  avatar         :string
 #  caption        :text
 #  comments_count :integer
 #  image          :string
@@ -23,4 +24,9 @@ class Photo < ApplicationRecord
 
   validates(:owner_id, { :presence => true })
   validates(:image, { :presence => true })
+
+
+  class Photo < ActiveRecord::Base
+    mount_uploader :avatar, AvatarUploader
+  end
 end

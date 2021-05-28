@@ -9,7 +9,7 @@ class PhotosController < ApplicationController
 
   def show
     the_id = params.fetch("path_id")
-
+    @the_id = the_id
     matching_photos = Photo.where({ :id => the_id })
 
     @the_photo = matching_photos.at(0)
@@ -26,6 +26,7 @@ class PhotosController < ApplicationController
   end
 
   def create
+    
     the_photo = Photo.new
     the_photo.caption = params.fetch("query_caption")
     the_photo.image = params.fetch("query_image")
