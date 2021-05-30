@@ -25,7 +25,9 @@ class Photo < ApplicationRecord
   validates(:owner_id, { :presence => true })
   validates(:image, { :presence => true })
 
-
+  def image_identifier
+  end
+  
   class Photo < ActiveRecord::Base
     mount_uploader :avatar, AvatarUploader
   end
