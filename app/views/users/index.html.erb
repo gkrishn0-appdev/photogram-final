@@ -42,8 +42,12 @@
          <% match =  FollowRequest.where(["sender_id = ? and recipient_id = ?", session[:user_id], user.id]).length 
          if match > 0%>
           <a href="/test"> Unfollow </a>
+          <% if (FollowRequest.where(["sender_id = ? and recipient_id = ?", session[:user_id], user.id]).at(0).status == "pending")
+          %> Request sent 
+          <a href="/test"> Cancel </a>
           <% end %>
-
+          <% end %>
+          
          <form action="/insert_follow_request" method="post" class="form-horizontal" enctype="multipart/form-data">
 
          <input type="hidden" id="query_sender_id" value = <%= session[:user_id] %> name="query_sender_id"">
