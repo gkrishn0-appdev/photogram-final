@@ -9,11 +9,13 @@ class UsersController < ApplicationController
         matching_photos = Photo.all
 
     @list_of_photos = matching_photos.order({ :created_at => :desc })
-
+      
   #  render({ :template => "photos/index.html.erb" })
     @users = User.all.order({ :username => :asc })
     un = params.fetch("username")
     @un = un
+    @pendingFollowers = FollowRequest.where(["status = ? and recipient_id = ?", "pending", User.where({:username => @un}).at(0).id])
+    
     render({ :template => "users/index_username.html.erb" })
   end
 

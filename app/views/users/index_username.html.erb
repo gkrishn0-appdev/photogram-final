@@ -1,7 +1,16 @@
 <br>
 hi 
- <h1><%= User.where({:username => @un}).at(0).username %></h1>
 
+  <% @pendingFollowers.each do |user| %>
+    <%=
+
+    User.where({:id => user.sender_id}).at(0).username 
+    %>
+  <% end %>
+
+
+ <h1><%= User.where({:username => @un}).at(0).username %></h1>
+<a href="/unfollow"> Unfollow </a>
 <% if session[:user_id]==User.where({:username => @un}).at(0).id %>
 <form action="/update_user" method="post" id="form1">
 <input for="user" value = <%= @un %> >User:</label>
