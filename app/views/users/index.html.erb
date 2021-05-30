@@ -39,7 +39,22 @@
     </td>
      <td>
       <% if session[:user_id].present? %>
-      <button> Follow </button>
+         <% match =  FollowRequest.where(["sender_id = ? and recipient_id = ?", session[:user_id], user.id]).length 
+         if match > 0%>
+          <a href="/test"> Unfollow </a>
+          <% end %>
+
+         <form action="/insert_follow_request" method="post" class="form-horizontal" enctype="multipart/form-data">
+
+         <input type="hidden" id="query_sender_id" value = <%= session[:user_id] %> name="query_sender_id"">
+         <input type="hidden" id="query_recipient_id" value = <%= user.id %> name="query_recipient_id">
+        <input type="hidden" id="query_status" value = "True" name="query_status">
+
+
+      <button>
+        Follow
+      </button>
+    </form>
       <%end%>
     </td>
 
