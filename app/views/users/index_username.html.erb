@@ -7,7 +7,7 @@ hi
     User.where({:id => user.sender_id}).at(0).username 
     %>
   <% end %>
-
+ <%= @followerCount %> Following
 
  <h1><%= User.where({:username => @un}).at(0).username %></h1>
 <a href="/unfollow"> Unfollow </a>

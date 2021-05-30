@@ -118,6 +118,7 @@
       </tr>
 
       <% @list_of_photos.each do |a_photo| %>
+      <% if (User.where({:id => a_photo.owner_id}).at(0).private==false) %>
       <tr>
         <td>
           <%= a_photo.id %>
@@ -128,7 +129,7 @@
         </td>
 
         <td>
-          <%= a_photo.image %>
+          <img src="<%= a_photo.image %>">
         </td>
 
         <td>
@@ -160,7 +161,7 @@
           </a>
         </td>
       </tr>
-      <% end %>
+      <% end end %>
     </table>
   </div>
 </div>

@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     un = params.fetch("username")
     @un = un
     @pendingFollowers = FollowRequest.where(["status = ? and recipient_id = ?", "pending", User.where({:username => @un}).at(0).id])
-    
+    @followerCount = FollowRequest.where(["status = ? and sender_id = ?", "accepted", User.where({:username => @un}).at(0).id]).length
     render({ :template => "users/index_username.html.erb" })
   end
 
