@@ -81,6 +81,7 @@ FEED
           @count=@count+photos.length
           %>
       <% photos.each do |a_photo| %>
+        <% if (a_photo.caption != "Some caption z" && a_photo.caption != "Some caption c") %>
 
       <tr>
         <td>
@@ -126,7 +127,7 @@ FEED
       </tr>
       <% %>
       
-     <% end end %>
+     <% end end end %>
      
     </table>
   </div>

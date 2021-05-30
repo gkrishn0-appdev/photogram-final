@@ -23,7 +23,6 @@ class UsersController < ApplicationController
       @index_counter=-1
     @list_of_photos = matching_photos.order({ :created_at => :desc })
     
-
   #  render({ :template => "photos/index.html.erb" })
     @users = User.all.order({ :username => :asc })
     un = params.fetch("username")
